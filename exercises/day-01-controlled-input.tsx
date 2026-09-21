@@ -5,7 +5,7 @@
   A text input where whatever you type appears live below it.
 
   REQUIREMENTS:
-  - One <input> field
+  - One <input> field - done
   - One <p> below it showing the current value
   - When the input is empty, show "Start typing..." in grey
   - A "Clear" button that resets the input to empty
@@ -25,9 +25,28 @@
   Getting it wrong and fixing it is the whole point.
 */
 
-import { useState } from 'react';
+import { useState } from "react";
 
-// Write your component here:
-export const ControlledInput = () => {
+function ControlledInput() {
+  const [text, setText] = useState<string>("");
 
-};
+  return (
+    <div>
+      <input
+        value={text}
+        placeholder="Type something…"
+        onChange={(e) => setText(e.target.value)}
+      />
+      <button onClick={() => setText("")} disabled={text === ""}>
+        Clear
+      </button>
+      {text === "" ? (
+        <p style={{ color: "grey" }}>Start typing...</p>
+      ) : (
+        <p>{text}</p>
+      )}
+    </div>
+  );
+}
+
+export { ControlledInput };

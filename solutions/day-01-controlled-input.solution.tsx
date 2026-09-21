@@ -5,10 +5,10 @@
   yours is fine. Compare the decisions, not the characters.
 */
 
-import { useState } from 'react';
+import { useState } from "react";
 
-export const ControlledInput = () => {
-  const [text, setText] = useState('');
+export const ControlledInputSolution = () => {
+  const [text, setText] = useState("");
 
   return (
     <div>
@@ -17,12 +17,13 @@ export const ControlledInput = () => {
         onChange={(e) => setText(e.target.value)}
         placeholder="Type something…"
       />
-      <button onClick={() => setText('')} disabled={text === ''}>
+
+      <button onClick={() => setText("")} disabled={text === ""}>
         Clear
       </button>
 
-      {text === '' ? (
-        <p style={{ color: 'grey' }}>Start typing...</p>
+      {text === "" ? (
+        <p style={{ color: "grey" }}>Start typing...</p>
       ) : (
         <p>{text}</p>
       )}
