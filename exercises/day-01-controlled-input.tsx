@@ -24,12 +24,10 @@
   DO NOT look at the solution until you've written your own attempt.
   Getting it wrong and fixing it is the whole point.
 */
-
 import { useState } from "react";
 
-function ControlledInput() {
-  const [text, setText] = useState<string>("");
-
+export const ControlledInput = () => {
+  const [text, setText] = useState("");
   return (
     <div>
       <input
@@ -47,6 +45,4 @@ function ControlledInput() {
       )}
     </div>
   );
-}
-
-export { ControlledInput };
+};
