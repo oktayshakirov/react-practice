@@ -11,15 +11,15 @@
   "Nothing was returned from render" until you write your component.
   That error means the wiring works — you just haven't started yet.
 */
-import { ControlledInput } from "../exercises/day-01-controlled-input";
-import { ControlledInputSolution } from "../solutions/day-01-controlled-input.solution";
+import { Counter as Excercise } from "../exercises/day-02-counter.tsx";
+import { Counter as Solution } from "../solutions/day-02-counter.solution.tsx";
 
 export default function App() {
   return (
     <main className="app">
-      <ControlledInput />
+      <Excercise />
       <hr />
-      <ControlledInputSolution />
+      <Solution />
     </main>
   );
 }

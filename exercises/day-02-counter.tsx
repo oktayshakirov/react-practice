@@ -25,9 +25,33 @@
   DO NOT look at the solution until you've written your own attempt.
 */
 
-import { useState } from 'react';
+import { useState } from "react";
 
-// Write your component here:
 export const Counter = () => {
+  const [count, setCount] = useState(0);
 
+  const decrement = () => setCount((prev) => Math.max(0, prev - 1));
+  const increment = () => setCount((prev) => prev + 1);
+  const reset = () => setCount(0);
+
+  return (
+    <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+      <button onClick={decrement} disabled={count === 0}>
+        -
+      </button>
+      <span
+        style={{
+          fontSize: "48px",
+          fontWeight: "700",
+          color: count === 0 ? "grey" : "green",
+        }}
+      >
+        {count}
+      </span>
+      <button onClick={increment}>+</button>
+      <button onClick={reset} disabled={count === 0}>
+        Reset
+      </button>
+    </div>
+  );
 };

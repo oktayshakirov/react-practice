@@ -1,5 +1,5 @@
 {
-  // Comment these lines out to re-enable autocomplete for this project only.
+  "editor.suggest.enabled": false,
   "editor.inlineSuggest.enabled": false,
   "editor.quickSuggestions": {
     "other": false,
@@ -9,8 +9,19 @@
   "editor.suggestOnTriggerCharacters": false,
   "editor.wordBasedSuggestions": "off",
   "editor.parameterHints.enabled": false,
-  "editor.acceptSuggestionOnEnter": "off",
-  "editor.acceptSuggestionOnCommitCharacter": false,
-  "typescript.suggest.completeFunctionCalls": false,
-  "javascript.suggest.completeFunctionCalls": false
+  "editor.snippetSuggestions": "none",
+  "editor.tabCompletion": "off",
+  "typescript.suggest.enabled": false,
+  "javascript.suggest.enabled": false,
+  "cursor.completions.enabled": false,
+  "cursor.general.enableTab": false,
+  "cursor.cpp.disabledLanguages": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "html",
+    "css"
+  ]
 }
