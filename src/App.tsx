@@ -11,8 +11,8 @@
   "Nothing was returned from render" until you write your component.
   That error means the wiring works — you just haven't started yet.
 */
-import { Counter as Excercise } from "../exercises/day-02-counter.tsx";
-import { Counter as Solution } from "../solutions/day-02-counter.solution.tsx";
+import { Toggle as Excercise } from "../exercises/day-03-toggle.tsx";
+import { Toggle as Solution } from "../solutions/day-03-toggle.solution.tsx";
 
 export default function App() {
   return (

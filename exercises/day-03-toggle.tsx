@@ -24,10 +24,26 @@
 
   DO NOT look at the solution until you've written your own attempt.
 */
+import { useState } from "react";
 
-import { useState } from 'react';
-
-// Write your component here:
 export const Toggle = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <div>
+      <button onClick={() => setIsOpen((prev) => !prev)}>
+        <span> ▶ </span>
+        {isOpen ? "Hide Details" : "Show Details"}
+      </button>
 
+      {isOpen && (
+        <div>
+          <h2>Condition report</h2>
+          <p>
+            Near Mint, sleeved since purchase. Small edge wear on the bottom
+            right corner, visible under direct light. Ships in a toploader.
+          </p>
+        </div>
+      )}
+    </div>
+  );
 };
