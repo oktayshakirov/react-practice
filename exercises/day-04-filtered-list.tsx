@@ -26,22 +26,46 @@
   DO NOT look at the solution until you've written your own attempt.
 */
 
-import { useState } from 'react';
+import { useState } from "react";
 
 const ITEMS = [
-  'Black Lotus',
-  'Charizard Base Set',
-  'Pikachu Illustrator',
-  'Blue-Eyes White Dragon',
-  'Dark Magician',
-  'Mox Ruby',
-  'Ancestral Recall',
-  'Holographic Raichu',
-  'Shadowless Blastoise',
-  'Time Walk',
+  "Black Lotus",
+  "Charizard Base Set",
+  "Pikachu Illustrator",
+  "Blue-Eyes White Dragon",
+  "Dark Magician",
+  "Mox Ruby",
+  "Ancestral Recall",
+  "Holographic Raichu",
+  "Shadowless Blastoise",
+  "Time Walk",
 ];
 
-// Write your component here:
 export const FilteredList = () => {
-
+  const [query, setQuery] = useState("");
+  const filtered = ITEMS.filter((item) =>
+    item.toLowerCase().includes(query.toLowerCase()),
+  );
+  return (
+    <div>
+      <input
+        type="search"
+        placeholder="Search cards..."
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      ></input>
+      <p>
+        Showing {filtered.length} of {ITEMS.length} items
+      </p>
+      {filtered.length === 0 ? (
+        <p>No reults for "{query}"</p>
+      ) : (
+        <ul>
+          {filtered.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
 };
