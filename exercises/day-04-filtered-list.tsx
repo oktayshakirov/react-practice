@@ -42,23 +42,22 @@ const ITEMS = [
 ];
 
 export const FilteredList = () => {
-  const [query, setQuery] = useState("");
-  const filtered = ITEMS.filter((item) =>
-    item.toLowerCase().includes(query.toLowerCase()),
-  );
+  const [input, setInput] = useState("");
+  const filtered = ITEMS.filter((item) => item.toLowerCase().includes(input));
+
   return (
     <div>
       <input
         type="search"
-        placeholder="Search cards..."
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
+        value={input}
+        placeholder="Search Cards..."
+        onChange={(e) => setInput(e.target.value)}
       ></input>
       <p>
         Showing {filtered.length} of {ITEMS.length} items
       </p>
       {filtered.length === 0 ? (
-        <p>No reults for "{query}"</p>
+        <p>No result for "{input}"</p>
       ) : (
         <ul>
           {filtered.map((item) => (
