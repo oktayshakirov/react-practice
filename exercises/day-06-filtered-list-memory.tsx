@@ -21,22 +21,46 @@
   Time to complete: 
 */
 
-import { useState } from 'react';
+import { useState } from "react";
 
 const ITEMS = [
-  'Black Lotus',
-  'Charizard Base Set',
-  'Pikachu Illustrator',
-  'Blue-Eyes White Dragon',
-  'Dark Magician',
-  'Mox Ruby',
-  'Ancestral Recall',
-  'Holographic Raichu',
-  'Shadowless Blastoise',
-  'Time Walk',
+  "Black Lotus",
+  "Charizard Base Set",
+  "Pikachu Illustrator",
+  "Blue-Eyes White Dragon",
+  "Dark Magician",
+  "Mox Ruby",
+  "Ancestral Recall",
+  "Holographic Raichu",
+  "Shadowless Blastoise",
+  "Time Walk",
 ];
 
-// Write your component here from memory:
 export const FilteredList = () => {
-
+  const [input, setInput] = useState("");
+  const filtered = ITEMS.filter((item) =>
+    item.toLowerCase().includes(input.toLowerCase()),
+  );
+  return (
+    <div>
+      <input
+        type="search"
+        value={input}
+        placeholder="Search Cards..."
+        onChange={(e) => setInput(e.target.value)}
+      ></input>
+      <p>
+        Showing {filtered.length} of {ITEMS.length} items
+      </p>
+      {filtered.length === 0 ? (
+        <p>No result for "{input}"</p>
+      ) : (
+        <ul>
+          {filtered.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
 };
