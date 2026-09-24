@@ -22,19 +22,78 @@
   Time to complete: 
 */
 
-const CARDS = [
-  { id: '1', name: 'Black Lotus', price: 12000, category: 'Magic', rare: true },
-  { id: '2', name: 'Charizard', price: 350, category: 'Pokémon', rare: true },
-  { id: '3', name: 'Dark Magician', price: 45, category: 'Yu-Gi-Oh', rare: false },
-  { id: '4', name: 'Pikachu', price: 8.5, category: 'Pokémon', rare: false },
-  { id: '5', name: 'Mox Ruby', price: 3200, category: 'Magic', rare: true },
+const CARDS: CardData[] = [
+  { id: "1", name: "Black Lotus", price: 12000, category: "Magic", rare: true },
+  { id: "2", name: "Charizard", price: 350, category: "Pokémon", rare: true },
+  {
+    id: "3",
+    name: "Dark Magician",
+    price: 45,
+    category: "Yu-Gi-Oh",
+    rare: false,
+  },
+  { id: "4", name: "Pikachu", price: 8.5, category: "Pokémon", rare: false },
+  { id: "5", name: "Mox Ruby", price: 3200, category: "Magic", rare: true },
 ];
 
-// Write your types here:
+type CardData = {
+  id: string;
+  name: string;
+  price: number;
+  category: string;
+  rare: boolean;
+};
 
-// Write your Card component here:
+type CardProps = {
+  name: string;
+  category: string;
+  price: number;
+  rare: boolean;
+  onClick: () => void;
+};
 
-// Write your CardList here:
+export const Card = ({ name, price, category, rare, onClick }: CardProps) => {
+  return (
+    <div>
+      <article
+        onClick={onClick}
+        style={{
+          border: "1px solid",
+          borderRadius: "8px",
+          padding: "16px",
+          width: "200px",
+        }}
+      >
+        <h3 style={{ margin: "0px 0px 4px" }}>
+          {name}
+          {rare && (
+            <span
+              style={{ marginLeft: "5px", fontSize: "15px", color: "green" }}
+            >
+              Rare
+            </span>
+          )}
+        </h3>
+        <p style={{ fontSize: "13px" }}>{category}</p>
+        <p style={{ fontWeight: "600" }}>{price.toFixed(2)}€</p>
+      </article>
+    </div>
+  );
+};
+
 export const CardList = () => {
-
+  return (
+    <div style={{ display: "flex", flexWrap: "wrap", gap: "16px" }}>
+      {CARDS.map((card) => (
+        <Card
+          key={card.id}
+          name={card.name}
+          price={card.price}
+          category={card.category}
+          rare={card.rare}
+          onClick={() => console.log(`Selected: ${card.name}`)}
+        />
+      ))}
+    </div>
+  );
 };
