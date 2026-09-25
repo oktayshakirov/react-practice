@@ -11,15 +11,24 @@
   "Nothing was returned from render" until you write your component.
   That error means the wiring works — you just haven't started yet.
 */
-import { CardList as Excercise } from "../exercises/day-07-card-props-memory.tsx";
-import { CardList as Solution } from "../solutions/day-07-card-props-memory.solution.tsx";
+import { ProductCard as Exercise } from "../exercises/day-08-product-card.tsx";
+import { ProductCard as Solution } from "../solutions/day-08-product-card.solution.tsx";
+
+const testCard = {
+  id: "1",
+  name: "Black Lotus",
+  price: 12000,
+  category: "Magic",
+  seller: "berlin GmbH",
+  inStock: true,
+};
 
 export default function App() {
   return (
     <main className="app">
-      <Excercise />
+      <Exercise {...testCard} />
       <hr />
-      <Solution />
+      <Solution {...testCard} />
     </main>
   );
 }
