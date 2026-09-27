@@ -11,24 +11,15 @@
   "Nothing was returned from render" until you write your component.
   That error means the wiring works — you just haven't started yet.
 */
-import { ProductCard as Exercise } from "../exercises/day-08-product-card.tsx";
-import { ProductCard as Solution } from "../solutions/day-08-product-card.solution.tsx";
-
-const testCard = {
-  id: "1",
-  name: "Black Lotus",
-  price: 12000,
-  category: "Magic",
-  seller: "berlin GmbH",
-  inStock: true,
-};
+import { ProductList as Exercise } from "../exercises/day-09-product-list.tsx";
+import { ProductList as Solution } from "../solutions/day-09-product-list.solution.tsx";
 
 export default function App() {
   return (
     <main className="app">
-      <Exercise {...testCard} />
+      <Exercise />
       <hr />
-      <Solution {...testCard} />
+      <Solution />
     </main>
   );
 }

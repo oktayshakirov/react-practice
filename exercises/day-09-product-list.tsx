@@ -37,17 +37,112 @@ export type Product = {
 };
 
 const PRODUCTS: Product[] = [
-  { id: '1', name: 'Black Lotus (Alpha)', price: 12000, category: 'Magic', seller: 'berlin_cards', inStock: true },
-  { id: '2', name: 'Charizard Base Set', price: 350, category: 'Pokemon', seller: 'kartenhaus', inStock: true },
-  { id: '3', name: 'Dark Magician', price: 45, category: 'Yu-Gi-Oh', seller: 'tcg_mitte', inStock: false },
-  { id: '4', name: 'Pikachu Illustrator', price: 9800, category: 'Pokemon', seller: 'berlin_cards', inStock: false },
-  { id: '5', name: 'Mox Ruby', price: 3200, category: 'Magic', seller: 'vintage_de', inStock: true },
-  { id: '6', name: 'Blue-Eyes White Dragon', price: 120, category: 'Yu-Gi-Oh', seller: 'kartenhaus', inStock: true },
+  {
+    id: "1",
+    name: "Black Lotus (Alpha)",
+    price: 12000,
+    category: "Magic",
+    seller: "berlin_cards",
+    inStock: true,
+  },
+  {
+    id: "2",
+    name: "Charizard Base Set",
+    price: 350,
+    category: "Pokemon",
+    seller: "kartenhaus",
+    inStock: true,
+  },
+  {
+    id: "3",
+    name: "Dark Magician",
+    price: 45,
+    category: "Yu-Gi-Oh",
+    seller: "tcg_mitte",
+    inStock: false,
+  },
+  {
+    id: "4",
+    name: "Pikachu Illustrator",
+    price: 9800,
+    category: "Pokemon",
+    seller: "berlin_cards",
+    inStock: false,
+  },
+  {
+    id: "5",
+    name: "Mox Ruby",
+    price: 3200,
+    category: "Magic",
+    seller: "vintage_de",
+    inStock: true,
+  },
+  {
+    id: "6",
+    name: "Blue-Eyes White Dragon",
+    price: 120,
+    category: "Yu-Gi-Oh",
+    seller: "kartenhaus",
+    inStock: true,
+  },
 ];
 
-// Write your ProductCard component here:
+export const ProductCard = ({
+  id,
+  name,
+  price,
+  category,
+  seller,
+  inStock,
+}: Product) => {
+  return (
+    <div>
+      <article
+        style={{
+          border: "1px solid gray",
+          borderRadius: "8px",
+          padding: "16px",
+          width: "220px",
+          opacity: inStock ? 1 : 0.5,
+        }}
+      >
+        <h3 style={{ margin: "0px 0px 8px" }}>{name}</h3>
+        <span
+          style={{
+            fontSize: "12px",
+            background: "rgb(238, 238, 238)",
+            borderRadius: "4px",
+            padding: "2px 6px",
+          }}
+        >
+          {category}
+        </span>
+        <p style={{ fontWeight: "600", margin: "8px 0px 4px" }}>
+          {price.toLocaleString("de-DE", {
+            style: "currency",
+            currency: "EUR",
+          })}
+        </p>
+        <p style={{ fontSize: "13px", color: "gray", margin: "0px" }}>
+          {seller}
+        </p>
+        <p style={{ color: inStock ? "green" : "red", margin: "8px 0px 0px" }}>
+          {inStock ? "In Stock" : "Out of Stock"}
+        </p>
+      </article>
+    </div>
+  );
+};
 
-// Write your ProductList component here:
 export const ProductList = () => {
-
+  return (
+    <div>
+      <h2>{PRODUCTS.length} listings</h2>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 15 }}>
+        {PRODUCTS.map((product) => (
+          <ProductCard key={product.id} {...product} />
+        ))}
+      </div>
+    </div>
+  );
 };
