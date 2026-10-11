@@ -36,19 +36,49 @@
   DO NOT look at the solution until you've written your own attempt.
 */
 
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState } from "react";
 
-export type Theme = 'light' | 'dark';
+export type Theme = "light" | "dark";
 
-// Write your ThemeContextValue type here:
+type ThemeContextValue = { theme: Theme; toggleTheme: () => void };
 
-// Write your context here:
+const ThemeContext = createContext<ThemeContextValue | null>(null);
 
-// Write your ThemeProvider here:
+const ThemeToggle = () => {
+  const ctx = useContext(ThemeContext);
+  if (!ctx) return null;
 
-// Write ThemeToggle here (3 levels deep, reads context directly):
+  return <button onClick={ctx.toggleTheme}>Theme: {ctx.theme}</button>;
+};
+const Header = () => (
+  <header
+    style={{ display: "flex", justifyContent: "space-between", padding: 16 }}
+  >
+    <strong>Title</strong>
+    <ThemeToggle />
+  </header>
+);
+const Page = () => (
+  <div>
+    <Header />
+    <p>Some content</p>
+  </div>
+);
 
-// Write Header, Page, and App here:
 export const App = () => {
-
+  const [theme, setTheme] = useState<Theme>("light");
+  const toggleTheme = () => setTheme((t) => (t === "light" ? "dark" : "light"));
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      <div
+        style={{
+          minHeight: "50vh",
+          background: theme === "light" ? "#ffffff" : "#1a1a1a",
+          color: theme === "light" ? "#1a1a1a" : "#f5f5f5",
+        }}
+      >
+        <Page />
+      </div>
+    </ThemeContext.Provider>
+  );
 };
