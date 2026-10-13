@@ -5,10 +5,10 @@
   expects to see.
 */
 
-import { createContext, useContext, useState } from 'react';
-import type { ReactNode } from 'react';
+import { createContext, useContext, useState } from "react";
+import type { ReactNode } from "react";
 
-export type Theme = 'light' | 'dark';
+export type Theme = "light" | "dark";
 
 type ThemeContextValue = {
   theme: Theme;
@@ -23,18 +23,21 @@ type ThemeProviderProps = {
 };
 
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
-  const [theme, setTheme] = useState<Theme>('light');
+  const [theme, setTheme] = useState<Theme>("light");
 
-  const toggleTheme = () => setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+  const toggleTheme = () =>
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
   );
 };
 
 export const useTheme = (): ThemeContextValue => {
   const ctx = useContext(ThemeContext);
-  if (!ctx) throw new Error('useTheme must be used inside a ThemeProvider');
+  if (!ctx) throw new Error("useTheme must be used inside a ThemeProvider");
   return ctx;
 };
 
@@ -44,15 +47,17 @@ const ThemeToggle = () => {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <button onClick={toggleTheme} style={{ cursor: 'pointer' }}>
-      Switch to {theme === 'light' ? 'dark' : 'light'} mode
+    <button onClick={toggleTheme} style={{ cursor: "pointer" }}>
+      Switch to {theme === "light" ? "dark" : "light"} mode
     </button>
   );
 };
 
 const Header = () => (
-  <header style={{ display: 'flex', justifyContent: 'space-between', padding: 16 }}>
-    <strong>Cardmarket</strong>
+  <header
+    style={{ display: "flex", justifyContent: "space-between", padding: 16 }}
+  >
+    <strong>Title</strong>
     <ThemeToggle />
   </header>
 );
@@ -63,9 +68,9 @@ const Page = () => {
   return (
     <div
       style={{
-        minHeight: '100vh',
-        background: theme === 'light' ? '#ffffff' : '#1a1a1a',
-        color: theme === 'light' ? '#1a1a1a' : '#f5f5f5',
+        minHeight: "100vh",
+        background: theme === "light" ? "#ffffff" : "#1a1a1a",
+        color: theme === "light" ? "#1a1a1a" : "#f5f5f5",
       }}
     >
       <Header />

@@ -36,19 +36,81 @@
   DO NOT look at the solution until you've written your own attempt.
 */
 
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState } from "react";
+import type { ReactNode } from "react";
 
-export type Theme = 'light' | 'dark';
+export type Theme = "light" | "dark";
 
-// Write your ThemeContextValue type here:
-
-// Write your context here (do NOT export it):
-
-// Write your ThemeProvider here:
-
-// Write your useTheme hook here:
-
-// Write a small demo tree that uses it:
-export const App = () => {
-
+type ThemeContextValue = {
+  theme: Theme;
+  toggleTheme: () => void;
 };
+
+const ThemeContext = createContext<ThemeContextValue | null>(null);
+
+type ThemeProviderProps = {
+  children: ReactNode;
+};
+
+export const ThemeProvider = ({ children }: ThemeProviderProps) => {
+  const [theme, setTheme] = useState<Theme>("light");
+
+  const toggleTheme = () =>
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+};
+
+export const useTheme = (): ThemeContextValue => {
+  const ctx = useContext(ThemeContext);
+  if (!ctx) throw new Error("useTheme must be used inside a ThemeProvider");
+  return ctx;
+};
+
+const ThemeToggle = () => {
+  const { theme, toggleTheme } = useTheme();
+
+  return (
+    <button onClick={toggleTheme} style={{ cursor: "pointer" }}>
+      Switch to {theme === "light" ? "dark" : "light"} mode
+    </button>
+  );
+};
+
+const Header = () => (
+  <header
+    style={{ display: "flex", justifyContent: "space-between", padding: 16 }}
+  >
+    <strong>Title</strong>
+    <ThemeToggle />
+  </header>
+);
+
+const Page = () => {
+  const { theme } = useTheme();
+
+  return (
+    <div
+      style={{
+        minHeight: "100vh",
+        background: theme === "light" ? "#ffffff" : "#1a1a1a",
+        color: theme === "light" ? "#1a1a1a" : "#f5f5f5",
+      }}
+    >
+      <Header />
+      <main style={{ padding: 16 }}>
+        <p>No null checks anywhere below the provider.</p>
+      </main>
+    </div>
+  );
+};
+
+export const App = () => (
+  <ThemeProvider>
+    <Page />
+  </ThemeProvider>
+);
