@@ -11,8 +11,8 @@
   "Nothing was returned from render" until you write your component.
   That error means the wiring works — you just haven't started yet.
 */
-import { App as Exercise } from "../exercises/day-19-theme-provider-hook.tsx";
-import { App as Solution } from "../solutions/day-19-theme-provider-hook.solution.tsx";
+import { SellerPage as Exercise } from "../exercises/day-20-use-fetch-memory.tsx";
+import { SellerPage as Solution } from "../solutions/day-20-use-fetch-memory.solution.tsx";
 
 export default function App() {
   return (
